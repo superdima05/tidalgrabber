@@ -9,4 +9,5 @@ Requirements:
 Script has 3 modes:
   - Playlist grabber
   - Track grabber
+  - Album grabber
   - Search
