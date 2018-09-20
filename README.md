@@ -7,7 +7,7 @@ Requirements:
   - transliterate 
   - mutagen
   
-Script has 3 modes:
+Script has 4 modes:
   - Playlist grabber
   - Track grabber
   - Album grabber
