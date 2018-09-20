@@ -5,7 +5,7 @@ If you have a lossless subscription, and you want to get .flac files, you can us
 Requirements: 
   - tidalapi
   - transliterate 
-  - ffmpeg
+  - mutagen
   
 Script has 3 modes:
   - Playlist grabber
@@ -15,4 +15,5 @@ Script has 3 modes:
   
 Features:
  - Automatically set ID3 tags
+ - Automatically sets album artworks
  - No need get token manually to use this script
