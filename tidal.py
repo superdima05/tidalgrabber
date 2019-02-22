@@ -44,14 +44,15 @@ def start():
 
 def download_flac(track):
 	url = session.get_media_url(track_id=track.id)
-	name = translit(u""+track.name, "ru", reversed=True).encode("UTF-8")
-	artist_name = translit(u""+track.artist.name, "ru", reversed=True).encode("UTF-8")
-	album_name = translit(u""+track.album.name, "ru", reversed=True).encode("UTF-8")
+	name = translit(""+track.name, "ru", reversed=True)
+	artist_name = translit(""+track.artist.name, "ru", reversed=True)
+	album_name = translit(""+track.album.name, "ru", reversed=True)
 	releaseDate = str(track.album.release_date)
 	print(name+' - '+url)
 	album_artist = translit(u""+track.album.artist.name, "ru", reversed=True).encode("UTF-8")
-	os.system('wget "'+url+'" -O "music/'+name+'.flac"'.encode('utf-8'))
-	os.system('wget "'+track.album.image+'" -O "music/'+name+'.png"'.encode('utf-8'))
+	print('wget "'+url+'" -O "music/'+name+'.flac"')
+	os.system('wget "'+url+'" -O "music/'+name+'.flac"')
+	os.system('wget "'+track.album.image+'" -O "music/'+name+'.png"')
 	audio = FLAC("music/"+name+".flac")
 	albumart = "music/"+name+".png"
 	image = Picture()
