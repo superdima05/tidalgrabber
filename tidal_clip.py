@@ -14,6 +14,9 @@ session._config.api_token='BI218mwp9ERZ3PFI'
 session.login('YOUR TIDAL LOGIN ', 'YOUR TIDAL PASSWORD')
 
 def start():
+	
+	if not os.path.exists("music/"):
+		os.mkdir("music/")
 
 	if mode == "playlist":
 		playlist_id = id
