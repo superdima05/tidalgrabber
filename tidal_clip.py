@@ -67,8 +67,11 @@ def download_flac(track):
 	releaseDate = str(track.album.release_date)
 	print(name+' - '+url)
 	album_artist = translit(u""+track.album.artist.name, "ru", reversed=True).encode("UTF-8")
-	download(url, 'music/'+name+'.flac')
-	download(track.album.image, name+'.png')
+	try:
+		download(url, "music/"+name+".flac")
+		download(track.album.image, 'music/'+name+'.png')
+	except Exception:
+		flac = 0
 	if os.path.exists("music/"+name+".flac"):
 		flac = 1
 	if not os.path.exists("music/"+name+".flac"):
