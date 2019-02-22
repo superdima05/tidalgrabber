@@ -66,7 +66,8 @@ def start():
 
 def download_flac(track):
 	url = session.get_media_url(track_id=track.id)
-	name = translit(u""+track.name, "ru", reversed=True).encode("UTF-8")
+	name_tag = translit(""+track.name, "ru", reversed=True).encode("UTF-8")
+	name = translit(""+track.name, "ru", reversed=True).encode("UTF-8").replace("?", "").replace("(", "").replace(")", "").replace("<", "").replace(">", "").replace(":", "").replace("/", "").replace("|", "").replace("*", "")
 	artist_name = translit(u""+track.artist.name, "ru", reversed=True).encode("UTF-8")
 	album_name = translit(u""+track.album.name, "ru", reversed=True).encode("UTF-8")
 	releaseDate = str(track.album.release_date)
