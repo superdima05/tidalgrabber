@@ -96,7 +96,7 @@ def download_flac(track):
 		with open(albumart, 'rb') as f:
 			image.data = f.read()
 		audio['artist'] = artist_name
-		audio['title'] = name
+		audio['title'] = name_tag
 		audio['album'] = album_name
 		audio['date'] = releaseDate
 		audio.add_picture(image)
