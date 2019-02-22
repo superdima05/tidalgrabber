@@ -6,12 +6,16 @@ import tidalapi
 from transliterate import translit
 import os
 from mutagen.flac import Picture, FLAC
+from requests import get
 
 session = tidalapi.Session(tidalapi.Config('LOSSLESS'))
 session._config.api_token='BI218mwp9ERZ3PFI'
 session.login('YOUR TIDAL LOGIN', 'YOUR TIDAL PASSWORD')
 
 def start():
+
+	if not os.path.exists("music/"):
+		os.mkdir("music/")
 
 	mode = input("Mode: \n 1) Playlist grabber\n 2) Track grabber\n 3) Album grabber\n 4) Search \n")
 
@@ -50,9 +54,8 @@ def download_flac(track):
 	releaseDate = str(track.album.release_date)
 	print(name+' - '+url)
 	album_artist = translit(u""+track.album.artist.name, "ru", reversed=True).encode("UTF-8")
-	print('wget "'+url+'" -O "music/'+name+'.flac"')
-	os.system('wget "'+url+'" -O "music/'+name+'.flac"')
-	os.system('wget "'+track.album.image+'" -O "music/'+name+'.png"')
+	download(url, 'music/'+name+'.flac')
+	download(track.album.image, 'music/'+name+'.png')
 	audio = FLAC("music/"+name+".flac")
 	albumart = "music/"+name+".png"
 	image = Picture()
@@ -69,8 +72,13 @@ def download_flac(track):
 	audio.save()
 	os.remove("music/"+name+".png")
 
+def download(url, file_name):
+	with open(file_name, "wb") as file:
+		response = get(url) 											
+		file.write(response.content)
+
 def want_start():
-	want = raw_input("Do you want to continue [0/1]: ")
+	want = input("Do you want to continue [0/1]: ")
 	if want == "1":
 		start()
 	elif want == "0":
@@ -78,9 +86,3 @@ def want_start():
 	else:
 		want_start()
 start()
-#playlist = session.get_playlist_tracks(playlist_id='004a984e-6f9e-44ed-a447-9c3dd4b0405f')
-#for track in playlist:
-#    url = session.get_media_url(track_id=track.id)
-#    name = translit(u""+track.name, "ru", reversed=True).encode("UTF-8")
-#    print(name+' - '+url)
-#    os.system('wget "'+url+'" -O "music/'+name+'.flac"'.encode('utf-8'))
