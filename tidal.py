@@ -74,8 +74,13 @@ def download_flac(track):
 	print(name+' - '+url)
 	album_artist = translit(u""+track.album.artist.name, "ru", reversed=True).encode("UTF-8")
 	try:
-		download(url, "music/"+name+".flac")
-		download(track.album.image, 'music/'+name+'.png')
+		if ".m4a" not in url:
+			download(url, "music/"+name+".flac")
+	except Exception:
+		flac = 0
+	try:
+		if ".m4a" not in url:
+			download(track.album.image, 'music/'+name+'.png')
 	except Exception:
 		flac = 0
 	if os.path.exists("music/"+name+".flac"):
