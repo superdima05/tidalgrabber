@@ -9,7 +9,7 @@ from mutagen.flac import Picture, FLAC
 from requests import get
 
 session = tidalapi.Session(tidalapi.Config('LOSSLESS'))
-session._config.api_token='BI218mwp9ERZ3PFI'
+session._config.api_token='MbjR4DLXz1ghC4rV'
 session.login('YOUR TIDAL LOGIN', 'YOUR TIDAL PASSWORD')
 
 def start():
