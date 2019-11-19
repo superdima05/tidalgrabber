@@ -97,9 +97,9 @@ def download_flac(track):
 		image.desc = 'front cover'
 		with open(albumart, 'rb') as f: # better than open(albumart, 'rb').read() ?
 			image.data = f.read()
-		audio['artist'] = artist_name
-		audio['title'] = name_tag
-		audio['album'] = album_name
+		audio['artist'] = track.artist.name
+		audio['title'] = track.name
+		audio['album'] = track.album.name
 		audio['date'] = releaseDate
 		audio.add_picture(image)
 		audio.save()
